@@ -13,7 +13,7 @@ export class WetherServiceService {
   getCityWetherData(lat:number,lon:number,params:string[],dataType:string,timezone:string)
   {
     const par = params.toString();
-    return this.httpClient.get(this.baseUrl +"latitude="+lat+"&longitude="+lon+"&current_weather=true&"+dataType+"="+par+"&timezone="+timezone);
+    return this.httpClient.get(this.baseUrl +"latitude="+lat+"&longitude="+lon+"&current_weather=true&"+dataType+"="+par+"&timezone="+timezone+"&start_date=2022-06-08&end_date=2023-02-23");
 
   }
 }

@@ -13,10 +13,16 @@ export class WetherAppComponent implements OnInit {
 
   city = new FormControl ('');
 
+  startDate = new FormControl();
+  endDate  = new FormControl();
   cityList: any;
 
-  cityLat: number =12.983333;
-  cityLon:number = 77.583333;
+  // for ban
+  // cityLat: number =12.983333;
+  // cityLon:number = 77.583333;
+
+  cityLat: number = 25.2702;
+  cityLon:number = 91.7323;
 
   cityWetherData :any;
 
@@ -33,6 +39,8 @@ export class WetherAppComponent implements OnInit {
   // for daily
   params: string[]  = [
     "temperature_2m_max",
+    "windspeed_10m_max",
+    "precipitation_sum"
         // "temperature_2m_min"
   ];
 
