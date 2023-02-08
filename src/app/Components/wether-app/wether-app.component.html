@@ -1,5 +1,5 @@
 <div class="container mx-auto p-2">
-  Get Wether Info for your city
+  Get Weather Info for your city
   <hr class="mb-3">
 
   <label for="countries" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"> Select City</label>
@@ -106,7 +106,7 @@
     Graph
   </h3>
 
-  <div class="p-3">
-    <app-multi-line></app-multi-line>
+  <div class="p-3" *ngIf="cityWetherData">
+    <app-multi-line [chartData]="cityWetherData" [dataType]="dataType"></app-multi-line>
   </div>
 </div>

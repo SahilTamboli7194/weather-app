@@ -20,11 +20,22 @@ export class WetherAppComponent implements OnInit {
 
   cityWetherData :any;
 
+  dataType: string = "daily";
+  timezone:string = "IST";
+
+  // for hourly
+  // params: string[]  = [
+  //   "temperature_2m",
+  //   "relativehumidity_2m",
+  //   // "windspeed_10m"
+  // ];
+
+  // for daily
   params: string[]  = [
-    "temperature_2m",
-    "relativehumidity_2m",
-    // "windspeed_10m"
+    "temperature_2m_max",
+        // "temperature_2m_min"
   ];
+
   constructor (private cityService:CityService, private wetherService:WetherServiceService){}
 
   ngOnInit(): void {
@@ -50,16 +61,22 @@ export class WetherAppComponent implements OnInit {
 
   getWeatherData()
   {
-    this.wetherService.getCityWetherData(this.cityLat,this.cityLon,this.params).subscribe(
+    this.wetherService.getCityWetherData(
+      this.cityLat,
+      this.cityLon,
+      this.params,
+      this.dataType,
+      this.timezone
+      ).subscribe(
       (data)=> {
 
         this.cityWetherData = data;
         // console.log(this.cityWetherData,'in function');
-        this.makeGraph();
+        // this.makeGraph();
       });
   }
 
-  makeGraph(){
-    console.log(this.cityWetherData);
-  }
+  // makeGraph(){
+  //   console.log(this.cityWetherData);
+  // }
 }

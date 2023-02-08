@@ -10,9 +10,10 @@ export class WetherServiceService {
 
   private baseUrl ="https://api.open-meteo.com/v1/forecast?";
 
-  getCityWetherData(lat:number,lon:number,params:string[])
+  getCityWetherData(lat:number,lon:number,params:string[],dataType:string,timezone:string)
   {
     const par = params.toString();
-    return this.httpClient.get(this.baseUrl +"latitude="+lat+"&longitude="+lon+"&current_weather=true&hourly="+par);
+    return this.httpClient.get(this.baseUrl +"latitude="+lat+"&longitude="+lon+"&current_weather=true&"+dataType+"="+par+"&timezone="+timezone);
+
   }
 }
