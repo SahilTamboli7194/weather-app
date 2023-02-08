@@ -8,20 +8,24 @@ import { LineComponent } from './Components/line/line.component';
 import { MultiLineComponent } from './Components/multi-line/multi-line.component';
 import { WetherAppComponent } from './Components/wether-app/wether-app.component';
 import { ReactiveFormsModule } from '@angular/forms';
-import { HttpClientModule} from '@angular/common/http'
+import { HttpClientModule} from '@angular/common/http';
+import { HeaderComponent } from './components/header/header.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
 @NgModule({
   declarations: [
     AppComponent,
     BarComponent,
     LineComponent,
     MultiLineComponent,
-    WetherAppComponent
+    WetherAppComponent,
+    HeaderComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
+    BrowserAnimationsModule
 
   ],
   providers: [],

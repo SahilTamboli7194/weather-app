@@ -13,9 +13,20 @@ export class WetherAppComponent implements OnInit {
 
   city = new FormControl ('');
 
-  startDate = new FormControl();
-  endDate  = new FormControl();
+  startDate = new FormControl('2023-02-01');
+  endDate  = new FormControl('2023-02-23');
+
   cityList: any;
+
+  get startDateValue()
+  {
+    return this.startDate.value as string;
+  }
+
+  get endDateValue()
+  {
+    return this.endDate.value as string;
+  }
 
   // for ban
   // cityLat: number =12.983333;
@@ -69,22 +80,26 @@ export class WetherAppComponent implements OnInit {
 
   getWeatherData()
   {
+
     this.wetherService.getCityWetherData(
       this.cityLat,
       this.cityLon,
       this.params,
       this.dataType,
-      this.timezone
+      this.timezone,
+      this.startDateValue,
+      this.endDateValue
       ).subscribe(
       (data)=> {
 
         this.cityWetherData = data;
-        // console.log(this.cityWetherData,'in function');
-        // this.makeGraph();
+
       });
   }
 
-  // makeGraph(){
-  //   console.log(this.cityWetherData);
-  // }
+  updateData()
+  {
+      this.getWeatherData();
+  }
+
 }
