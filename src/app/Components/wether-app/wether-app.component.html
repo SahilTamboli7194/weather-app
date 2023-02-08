@@ -1,0 +1,112 @@
+<div class="container mx-auto p-2">
+  Get Wether Info for your city
+  <hr class="mb-3">
+
+  <label for="countries" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"> Select City</label>
+  <select id="countries" [formControl]="city" (change)="updateLatLon($event)"
+    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+    <option *ngFor="let singleCity of cityList" [value]="singleCity.name">{{singleCity.name}}</option>
+  </select>
+  <div class="mt-5">
+    <h3>
+      <div *ngIf="city.value; else elseBlock" class="inline-block">
+        {{city.value}}
+      </div>
+      <ng-template #elseBlock>
+        Bangalore
+      </ng-template>
+       Info :-
+    </h3>
+    <div class="flex fex-start">
+        <!-- location -->
+        <div class="border w-96 p-3 mt-3">
+          <h4 class="font-bold text-[20px]">
+            Location
+          </h4>
+          <div class="flex justify-start">
+            <div class="p-1 font-bold w-[80px]">
+              latitude
+            </div>
+            <div class="p-1 ps-2 ml-2">
+              {{cityWetherData?.latitude}}
+            </div>
+          </div>
+
+          <div class="flex justify-start">
+            <div class="p-1 font-bold w-[80px]">
+              longitude
+            </div>
+            <div class="p-1 ps-2 ml-2">
+              {{cityWetherData?.longitude}}
+            </div>
+          </div>
+
+          <div class="flex justify-start">
+            <div class="p-1 font-bold w-[80px]">
+              elevation
+            </div>
+            <div class="p-1 ps-2 ml-2">
+              {{cityWetherData?.elevation}}
+            </div>
+          </div>
+
+          <div class="flex justify-start">
+            <div class="p-1 font-bold w-[80px]">
+              timezone
+            </div>
+            <div class="p-1 ps-2 ml-2">
+              {{cityWetherData?.timezone}}
+            </div>
+          </div>
+        </div>
+
+        <!-- current wether -->
+        <div class="border w-96 p-3 mt-3">
+          <h4 class="font-bold text-[20px]">
+            Current Weather
+          </h4>
+          <div class="flex justify-start">
+            <div class="p-1 font-bold w-[100px]">
+              temperature
+            </div>
+            <div class="p-1 ps-2 ml-2">
+              {{cityWetherData?.current_weather.temperature}}
+            </div>
+          </div>
+
+          <div class="flex justify-start">
+            <div class="p-1 font-bold w-[100px]">
+              time
+            </div>
+            <div class="p-1 ps-2 ml-2">
+              {{cityWetherData?.current_weather.time | date:'medium'}}
+            </div>
+          </div>
+
+          <div class="flex justify-start">
+            <div class="p-1 font-bold w-[100px]">
+              windspeed
+            </div>
+            <div class="p-1 ps-2 ml-2">
+              {{cityWetherData?.current_weather.windspeed}}
+            </div>
+          </div>
+
+        </div>
+    </div>
+
+
+    <div>
+
+    </div>
+  </div>
+
+
+  <h3 class="mt-10">
+    Graph
+  </h3>
+
+  <div class="p-3">
+    <app-multi-line></app-multi-line>
+  </div>
+</div>
