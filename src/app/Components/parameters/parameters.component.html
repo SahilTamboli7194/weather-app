@@ -1,0 +1,39 @@
+<mat-tab-group>
+  <mat-tab>
+    <ng-template mat-tab-label>
+      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
+        <path strokeLinecap="round" strokeLinejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 11-18 0 9 9 0 0118 0z" />
+      </svg>
+
+
+      Daily Parameter
+    </ng-template>
+
+    <div class="grid grid-cols-3 gap-1 p-3 mt-3">
+
+      <div class="p-1" *ngFor="let item of dParams">
+        <input type="checkbox" name="" id="" [value]="item" class="ml-1" (change)="change($event)"> {{item}}
+      </div>
+
+    </div>
+  </mat-tab>
+
+  <mat-tab>
+    <ng-template mat-tab-label>
+
+      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
+        <path strokeLinecap="round" strokeLinejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 11-18 0 9 9 0 0118 0z" />
+      </svg>
+
+      Hourly Parameter
+    </ng-template>
+    <div class="grid grid-cols-3 gap-1 p-3 mt-3">
+
+      <div class="p-1" *ngFor="let item of hParams">
+        <input type="checkbox" name="" id="" [value]="item" class="ml-1" (change)="change($event)"> {{item}}
+      </div>
+
+    </div>
+  </mat-tab>
+
+</mat-tab-group>

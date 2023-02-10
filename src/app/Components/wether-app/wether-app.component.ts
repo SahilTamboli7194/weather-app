@@ -50,9 +50,11 @@ export class WetherAppComponent implements OnInit {
   // for daily
   params: string[]  = [
     "temperature_2m_max",
+    // "sunrise",
+    // "sunset",
     "windspeed_10m_max",
-    "precipitation_sum"
-        // "temperature_2m_min"
+    // "precipitation_sum"
+        "temperature_2m_min"
   ];
 
   constructor (private cityService:CityService, private wetherService:WetherServiceService){}
@@ -100,6 +102,20 @@ export class WetherAppComponent implements OnInit {
   updateData()
   {
       this.getWeatherData();
+  }
+
+  step = 3;
+
+  setStep(index: number) {
+    this.step = index;
+  }
+
+  nextStep() {
+    this.step++;
+  }
+
+  prevStep() {
+    this.step--;
   }
 
 }

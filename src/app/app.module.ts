@@ -11,6 +11,16 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule} from '@angular/common/http';
 import { HeaderComponent } from './components/header/header.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
+import {MatExpansionModule} from '@angular/material/expansion';
+import {MatIconModule} from '@angular/material/icon';
+import {MatFormFieldModule} from '@angular/material/form-field';
+import {MatInputModule} from '@angular/material/input';
+import {MatDatepickerModule} from '@angular/material/datepicker';
+import {MatTabsModule} from '@angular/material/tabs';
+import { ParametersComponent } from './Components/parameters/parameters.component';
+import {MatTreeModule} from '@angular/material/tree';
+
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -18,14 +28,21 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
     LineComponent,
     MultiLineComponent,
     WetherAppComponent,
-    HeaderComponent
+    HeaderComponent,
+    ParametersComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     ReactiveFormsModule,
     HttpClientModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    MatExpansionModule,
+    MatIconModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatTabsModule,
+    MatTreeModule
 
   ],
   providers: [],

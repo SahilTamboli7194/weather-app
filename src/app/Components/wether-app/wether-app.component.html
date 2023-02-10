@@ -1,145 +1,188 @@
-<div class="container mx-auto p-2 mt-10">
-  Get Weather Info for your city
-  <hr class="mb-3">
 
-  <div class="w-96">
-    <label for="countries" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"> Select City</label>
-  <select id="countries" [formControl]="city" (change)="updateLatLon($event)"
-    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-    <option *ngFor="let singleCity of cityList" [value]="singleCity.name">{{singleCity.name}}</option>
-  </select>
-  </div>
+<div class="mt-20 container mx-auto p-2">
+  <mat-accordion class="example-headers-align">
+    <mat-expansion-panel [expanded]="step === 0" (opened)="setStep(0)" hideToggle>
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          City
+        </mat-panel-title>
+        <mat-panel-description>
+          city Selection
+          <mat-icon>location_city</mat-icon>
+        </mat-panel-description>
+      </mat-expansion-panel-header>
 
-
-  <div class="mt-5">
-    <h3>
-      <div *ngIf="city.value; else elseBlock" class="inline-block">
-        {{city.value}}
+      <div class="w-96">
+        <label for="countries" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"> Select City</label>
+      <select id="countries" [formControl]="city" (change)="updateLatLon($event)"
+        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+        <option *ngFor="let singleCity of cityList" [value]="singleCity.name">{{singleCity.name}}</option>
+      </select>
       </div>
-      <ng-template #elseBlock>
-        Bangalore
-      </ng-template>
-      Info :-
-    </h3>
-    <div class="flex fex-start">
-      <!-- location -->
-      <div class="border w-96 p-3 mt-3">
-        <h4 class="font-bold text-[20px]">
+
+      <mat-action-row>
+        <button class="wx-3" mat-button color="primary" (click)="nextStep()">Next</button>
+      </mat-action-row>
+    </mat-expansion-panel>
+
+    <mat-expansion-panel [expanded]="step === 1" (opened)="setStep(1)" hideToggle>
+      <mat-expansion-panel-header>
+        <mat-panel-title>
           Location
-        </h4>
-        <div class="flex justify-start">
-          <div class="p-1 font-bold w-[80px]">
-            latitude
-          </div>
-          <div class="p-1 ps-2 ml-2">
-            {{cityWetherData?.latitude}}
-          </div>
+        </mat-panel-title>
+        <mat-panel-description>
+          info related to location
+          <mat-icon> location_on</mat-icon>
+        </mat-panel-description>
+      </mat-expansion-panel-header>
+
+      <mat-tab-group animationDuration="1000ms">
+        <mat-tab label="location">
+            <div class="flex justify-start">
+              <div class="p-1 font-bold w-[80px]">
+                latitude
+              </div>
+              <div class="p-1 ps-2 ml-2">
+                {{cityWetherData?.latitude}}
+              </div>
+            </div>
+
+            <div class="flex justify-start">
+              <div class="p-1 font-bold w-[80px]">
+                longitude
+              </div>
+              <div class="p-1 ps-2 ml-2">
+                {{cityWetherData?.longitude}}
+              </div>
+            </div>
+
+            <div class="flex justify-start">
+              <div class="p-1 font-bold w-[80px]">
+                elevation
+              </div>
+              <div class="p-1 ps-2 ml-2">
+                {{cityWetherData?.elevation}}
+              </div>
+            </div>
+
+            <div class="flex justify-start">
+              <div class="p-1 font-bold w-[80px]">
+                timezone
+              </div>
+              <div class="p-1 ps-2 ml-2">
+                {{cityWetherData?.timezone}}
+              </div>
+            </div>
+        </mat-tab>
+        <mat-tab label="Current Weather">
+
+            <div class="flex justify-start">
+              <div class="p-1 font-bold w-[100px]">
+                temperature
+              </div>
+              <div class="p-1 ps-2 ml-2">
+                {{cityWetherData?.current_weather.temperature}}
+              </div>
+            </div>
+
+            <div class="flex justify-start">
+              <div class="p-1 font-bold w-[100px]">
+                time
+              </div>
+              <div class="p-1 ps-2 ml-2">
+                {{cityWetherData?.current_weather.time | date:'medium'}}
+              </div>
+            </div>
+
+            <div class="flex justify-start">
+              <div class="p-1 font-bold w-[100px]">
+                windspeed
+              </div>
+              <div class="p-1 ps-2 ml-2">
+                {{cityWetherData?.current_weather.windspeed}}
+              </div>
+            </div>
+        </mat-tab>
+      </mat-tab-group>
+
+      <mat-action-row>
+        <button class="wx-3" mat-button color="warn" (click)="prevStep()">Previous</button>
+        <button class="wx-3" mat-button color="primary" (click)="nextStep()">Next</button>
+      </mat-action-row>
+    </mat-expansion-panel>
+
+    <mat-expansion-panel [expanded]="step === 2" (opened)="setStep(2)" hideToggle>
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          Date
+        </mat-panel-title>
+        <mat-panel-description>
+          Select Range
+          <mat-icon>date_range</mat-icon>
+        </mat-panel-description>
+      </mat-expansion-panel-header>
+      <div class="flex justify-start mt-1">
+
+        <div class="flex items-center w-96">
+          <label for="your-input-id" class="mr-1 w-36">Start Date:</label>
+          <input id="your-input-id" type="date" class="bg-white focus:outline-none focus:shadow-outline border border-gray-300 rounded-lg py-2 px-4 block w-full appearance-none leading-normal"
+            min="2022-06-08" max="2023-02-23"
+            [formControl]="startDate"
+            (change)="updateData()"
+          >
         </div>
 
-        <div class="flex justify-start">
-          <div class="p-1 font-bold w-[80px]">
-            longitude
-          </div>
-          <div class="p-1 ps-2 ml-2">
-            {{cityWetherData?.longitude}}
-          </div>
-        </div>
-
-        <div class="flex justify-start">
-          <div class="p-1 font-bold w-[80px]">
-            elevation
-          </div>
-          <div class="p-1 ps-2 ml-2">
-            {{cityWetherData?.elevation}}
-          </div>
-        </div>
-
-        <div class="flex justify-start">
-          <div class="p-1 font-bold w-[80px]">
-            timezone
-          </div>
-          <div class="p-1 ps-2 ml-2">
-            {{cityWetherData?.timezone}}
-          </div>
-        </div>
-      </div>
-
-      <!-- current wether -->
-      <div class="border w-96 p-3 mt-3">
-        <h4 class="font-bold text-[20px]">
-          Current Weather
-        </h4>
-        <div class="flex justify-start">
-          <div class="p-1 font-bold w-[100px]">
-            temperature
-          </div>
-          <div class="p-1 ps-2 ml-2">
-            {{cityWetherData?.current_weather.temperature}}
-          </div>
-        </div>
-
-        <div class="flex justify-start">
-          <div class="p-1 font-bold w-[100px]">
-            time
-          </div>
-          <div class="p-1 ps-2 ml-2">
-            {{cityWetherData?.current_weather.time | date:'medium'}}
-          </div>
-        </div>
-
-        <div class="flex justify-start">
-          <div class="p-1 font-bold w-[100px]">
-            windspeed
-          </div>
-          <div class="p-1 ps-2 ml-2">
-            {{cityWetherData?.current_weather.windspeed}}
-          </div>
-        </div>
-
-      </div>
-    </div>
-    <div>
-
-    </div>
-  </div>
-  <div class="mt-2">
-    <h4>
-      Select Date Range
-      <span class="text-[14px]">
-        ( Start Date :- 2022-06-08 ,End Date :- 2023-02-23)
-      </span>
-    </h4>
-    <div class="flex justify-start mt-1">
-
-      <div class="flex items-center w-96">
-        <label for="your-input-id" class="mr-1 w-36">Start Date:</label>
-        <input id="your-input-id" type="date" class="bg-white focus:outline-none focus:shadow-outline border border-gray-300 rounded-lg py-2 px-4 block w-full appearance-none leading-normal"
+        <div class="flex items-center w-96 ml-3">
+          <label for="your-input-id" class="mr-1 w-36">End Date:</label>
+          <input id="your-input-id" type="date" class="bg-white focus:outline-none focus:shadow-outline border border-gray-300 rounded-lg py-2 px-4 block w-full appearance-none leading-normal"
           min="2022-06-08" max="2023-02-23"
-          [formControl]="startDate"
+          [formControl]="endDate"
           (change)="updateData()"
-        >
+          >
+        </div>
+
       </div>
+      <mat-action-row>
+        <button class="wx-3" mat-button color="warn" (click)="prevStep()">Previous</button>
+        <button class="wx-3" mat-button color="primary" (click)="nextStep()">End</button>
+      </mat-action-row>
+    </mat-expansion-panel>
 
-      <div class="flex items-center w-96 ml-3">
-        <label for="your-input-id" class="mr-1 w-36">End Date:</label>
-        <input id="your-input-id" type="date" class="bg-white focus:outline-none focus:shadow-outline border border-gray-300 rounded-lg py-2 px-4 block w-full appearance-none leading-normal"
-        min="2022-06-08" max="2023-02-23"
-        [formControl]="endDate"
-        (change)="updateData()"
-        >
-      </div>
+    <mat-expansion-panel [expanded]="step === 3" (opened)="setStep(3)" hideToggle>
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          Parameters
+        </mat-panel-title>
+        <mat-panel-description>
+          Parameters
+          <mat-icon>date_range</mat-icon>
+        </mat-panel-description>
+      </mat-expansion-panel-header>
+      <app-parameters></app-parameters>
 
-    </div>
-  </div>
-
-  <h3 class="mt-3">
-    Graph
-  </h3>
-
-  <div class="p-3" *ngIf="cityWetherData">
-    <app-multi-line [chartData]="cityWetherData"
-    [dataType]="dataType"
-    [params]="params"
-    ></app-multi-line>
-  </div>
+      <mat-action-row>
+        <button class="wx-3" mat-button color="warn" (click)="prevStep()">Previous</button>
+        <button class="wx-3" mat-button color="primary" (click)="nextStep()">End</button>
+      </mat-action-row>
+    </mat-expansion-panel>
+    <mat-expansion-panel [expanded]="step === 4" (opened)="setStep(4)" hideToggle>
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          Graph
+        </mat-panel-title>
+        <mat-panel-description>
+          Inform the date you wish to travel
+          <mat-icon> multiline_chart</mat-icon>
+        </mat-panel-description>
+      </mat-expansion-panel-header>
+      <app-multi-line [chartData]="cityWetherData"
+      [dataType]="dataType"
+      [params]="params"
+      ></app-multi-line>
+      <mat-action-row>
+        <button class="wx-3" mat-button color="warn" (click)="prevStep()">Previous</button>
+        <button class="wx-3" mat-button color="primary" (click)="nextStep()">End</button>
+      </mat-action-row>
+    </mat-expansion-panel>
+  </mat-accordion>
 </div>
