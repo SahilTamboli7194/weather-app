@@ -6,10 +6,10 @@ import { WeatherService } from 'src/app/Services/weather.service';
 
 @Component({
   selector: 'app-wether-app',
-  templateUrl: './wether-app.component.html',
-  styleUrls: ['./wether-app.component.css']
+  templateUrl: './weather-app.component.html',
+  styleUrls: ['./weather-app.component.css']
 })
-export class WetherAppComponent implements OnInit {
+export class WeatherAppComponent implements OnInit {
 
   city = new FormControl ('');
 
