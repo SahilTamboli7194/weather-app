@@ -4,15 +4,11 @@ import { Injectable } from '@angular/core';
 @Injectable({
   providedIn: 'root'
 })
-export class WetherServiceService {
+export class WeatherService {
 
   constructor(private httpClient: HttpClient) { }
 
   private baseUrl = "https://api.open-meteo.com/v1/forecast?";
-
-  private dataType !: string;
-
-  private parmas !: string[];
 
   private dailyParmas: string[] = [
     "temperature_2m_max",

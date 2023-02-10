@@ -1,6 +1,6 @@
 import { Component, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
-import { WetherServiceService } from 'src/app/Services/wether-service.service';
+import { WeatherService } from 'src/app/Services/weather.service';
 
 @Component({
   selector: 'app-parameters',
@@ -12,9 +12,9 @@ export class ParametersComponent implements OnInit,OnChanges{
   dParams !: string [];
   hParams !: string [];
 
-  temp = new Set();
+  temp: Set<string> = new Set();
 
-  constructor (private wetherService:WetherServiceService){}
+  constructor (private wetherService:WeatherService){}
 
   ngOnInit(): void {
    this.getDailyParams();

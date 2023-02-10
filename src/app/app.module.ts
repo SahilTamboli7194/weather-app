@@ -3,8 +3,6 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { BarComponent } from './Components/bar/bar.component';
-import { LineComponent } from './Components/line/line.component';
 import { MultiLineComponent } from './Components/multi-line/multi-line.component';
 import { WetherAppComponent } from './Components/wether-app/wether-app.component';
 import { ReactiveFormsModule } from '@angular/forms';
@@ -15,7 +13,6 @@ import {MatExpansionModule} from '@angular/material/expansion';
 import {MatIconModule} from '@angular/material/icon';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatInputModule} from '@angular/material/input';
-import {MatDatepickerModule} from '@angular/material/datepicker';
 import {MatTabsModule} from '@angular/material/tabs';
 import { ParametersComponent } from './Components/parameters/parameters.component';
 import {MatTreeModule} from '@angular/material/tree';
@@ -24,8 +21,6 @@ import {MatTreeModule} from '@angular/material/tree';
 @NgModule({
   declarations: [
     AppComponent,
-    BarComponent,
-    LineComponent,
     MultiLineComponent,
     WetherAppComponent,
     HeaderComponent,

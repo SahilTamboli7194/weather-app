@@ -2,7 +2,7 @@ import { SelectorListContext } from '@angular/compiler';
 import { Component, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { CityService } from 'src/app/Services/city.service';
-import { WetherServiceService } from 'src/app/Services/wether-service.service';
+import { WeatherService } from 'src/app/Services/weather.service';
 
 @Component({
   selector: 'app-wether-app',
@@ -57,7 +57,7 @@ export class WetherAppComponent implements OnInit {
         "temperature_2m_min"
   ];
 
-  constructor (private cityService:CityService, private wetherService:WetherServiceService){}
+  constructor (private cityService:CityService, private wetherService:WeatherService){}
 
   ngOnInit(): void {
     this.getWeatherData();
